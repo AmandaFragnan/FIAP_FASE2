@@ -6,20 +6,14 @@ import matplotlib.pyplot as plt
 from sqlalchemy import create_engine, text
 import requests
 from datetime import datetime
-import oracledb
 
 
 # Conectando com o Oracle
 def conectar_oracle():
     try:
-        conn = oracledb.connect(
-            user="admin",
-            password="FIAPfiap2024",
-            dsn="fiap2024_low",
-            config_dir=r"C:\opt\OracleCloud\MYDB",
-            wallet_location=r"C:\opt\OracleCloud\MYDB",
-            wallet_password="FIAPfiap2024"
-        )
+        engine = create_engine('oracle+oracledb://SYSTEM:1234@localhost:1521/xe')
+        conn = engine.connect()
+        print("Conexão com o Oracle estabelecida com sucesso!")
         return conn
     except Exception as e:
         print(f"Erro ao conectar ao Oracle: {e}")
@@ -35,14 +29,17 @@ def calcular_custo(insumos, horas_trabalho):
     return custo_total
 
 
-def registrar_safra(conn, produtor, produto, area, insumos, colheita_prevista, custo_total):
+def registrar_safra(conn, produto, area, insumos, colheita_prevista, custo_total):
     try:
         query = """
-        INSERT INTO SAFRAS (PRODUTOR, PRODUTO, AREA, INSUMOS, COLHEITA_PREVISTA, CUSTO_TOTAL)
-        VALUES (:produtor, :produto, :area, :insumos, TO_DATE(:colheita_prevista, 'YYYY-MM-DD'), :custo_total)
+        INSERT INTO SAFRAS (PRODUTO, AREA, INSUMOS, COLHEITA_PREVISTA, CUSTO_TOTAL)
+        VALUES (:produto, :area, :insumos, TO_DATE(:colheita_prevista, 'YYYY-MM-DD'), :custo_total)
         """
-        cursor = conn.cursor()
-        cursor.execute(query,{'produtor': produtor, 'produto': produto, 'area': area, 'insumos': insumos, 'colheita_prevista': colheita_prevista,'custo_total': custo_total})
+        conn.execute(
+            text(query),
+            {'produto': produto, 'area': area, 'insumos': insumos, 'colheita_prevista': colheita_prevista,
+             'custo_total': custo_total}
+        )
         conn.commit()
         print("Safra registrada com sucesso!")
     except Exception as e:
@@ -161,7 +158,6 @@ class SafraApp:
             return
 
         safra = {
-            'produtor': produtor,
             'produto': produto,
             'area_cultivada': area_cultivada,
             'insumos': insumos,
@@ -185,7 +181,7 @@ class SafraApp:
 
         # Inserindo as informações ao banco de dados Oracle
         if conexao:
-            registrar_safra(conexao, produtor, produto, area_cultivada, str(insumos), colheita_prevista, custo_total)
+            registrar_safra(conexao, produto, area_cultivada, str(insumos), colheita_prevista, custo_total)
 
         messagebox.showinfo("Sucesso", "Safra registrada com sucesso!")
 
