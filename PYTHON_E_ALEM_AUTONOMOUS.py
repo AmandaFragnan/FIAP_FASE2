@@ -38,7 +38,7 @@ def calcular_custo(insumos, horas_trabalho):
 def registrar_safra(conn, produtor, produto, area, insumos, colheita_prevista, custo_total):
     try:
         query = """
-        INSERT INTO SAFRAS (PRODUTO, AREA, INSUMOS, COLHEITA_PREVISTA, CUSTO_TOTAL)
+        INSERT INTO SAFRAS (PRODUTOR, PRODUTO, AREA, INSUMOS, COLHEITA_PREVISTA, CUSTO_TOTAL)
         VALUES (:produtor, :produto, :area, :insumos, TO_DATE(:colheita_prevista, 'YYYY-MM-DD'), :custo_total)
         """
         cursor = conn.cursor()
