@@ -35,16 +35,14 @@ def calcular_custo(insumos, horas_trabalho):
     return custo_total
 
 
-def registrar_safra(conn, produto, area, insumos, colheita_prevista, custo_total):
+def registrar_safra(conn, produtor, produto, area, insumos, colheita_prevista, custo_total):
     try:
         query = """
         INSERT INTO SAFRAS (PRODUTO, AREA, INSUMOS, COLHEITA_PREVISTA, CUSTO_TOTAL)
-        VALUES (:produto, :area, :insumos, TO_DATE(:colheita_prevista, 'YYYY-MM-DD'), :custo_total)
+        VALUES (:produtor, :produto, :area, :insumos, TO_DATE(:colheita_prevista, 'YYYY-MM-DD'), :custo_total)
         """
         cursor = conn.cursor()
-        cursor.execute(query,
-                       {'produto': produto, 'area': area, 'insumos': insumos, 'colheita_prevista': colheita_prevista,
-                        'custo_total': custo_total})
+        cursor.execute(query,{'produtor': produtor, 'produto': produto, 'area': area, 'insumos': insumos, 'colheita_prevista': colheita_prevista,'custo_total': custo_total})
         conn.commit()
         print("Safra registrada com sucesso!")
     except Exception as e:
@@ -163,6 +161,7 @@ class SafraApp:
             return
 
         safra = {
+            'produtor': produtor,
             'produto': produto,
             'area_cultivada': area_cultivada,
             'insumos': insumos,
@@ -186,7 +185,7 @@ class SafraApp:
 
         # Inserindo as informações ao banco de dados Oracle
         if conexao:
-            registrar_safra(conexao, produto, area_cultivada, str(insumos), colheita_prevista, custo_total)
+            registrar_safra(conexao, produtor, produto, area_cultivada, str(insumos), colheita_prevista, custo_total)
 
         messagebox.showinfo("Sucesso", "Safra registrada com sucesso!")
 
