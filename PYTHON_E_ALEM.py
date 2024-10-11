@@ -33,7 +33,7 @@ def registrar_safra(conn, produto, area, insumos, colheita_prevista, custo_total
     try:
         query = """
         INSERT INTO SAFRAS (PRODUTO, AREA, INSUMOS, COLHEITA_PREVISTA, CUSTO_TOTAL)
-        VALUES (:produto, :area, :insumos, TO_DATE(:colheita_prevista, 'DD-MM-YYYY'), :custo_total)
+        VALUES (:produto, :area, :insumos, TO_DATE(:colheita_prevista, 'YYYY-MM-DD'), :custo_total)
         """
         conn.execute(
             text(query),
@@ -91,7 +91,7 @@ class SafraApp:
         tk.Label(self.root, text="Área Cultivada").grid(row=2, column=0)
         tk.Label(self.root, text="Insumos (Fertilizantes, Pesticidas, Água)").grid(row=3, column=0)
         tk.Label(self.root, text="Horas de Trabalho").grid(row=4, column=0)
-        tk.Label(self.root, text="Colheita Prevista (DD-MM-YYYY)").grid(row=5, column=0)
+        tk.Label(self.root, text="Colheita Prevista (YYYY-MM-DD)").grid(row=5, column=0)
 
         self.entry_produtor = tk.Entry(self.root)
         self.entry_produto = tk.Entry(self.root)
@@ -152,10 +152,7 @@ class SafraApp:
         custo_total = calcular_custo(insumos, horas_trabalho)
 
         try:
-            data_colheita = datetime.strptime(colheita_prevista, "%d-%m-%Y")
-            if data_colheita < datetime.now():
-                messagebox.showerror("Erro", "A data de colheita prevista não pode ser anterior à data atual.")
-            return
+            data_colheita = datetime.strptime(colheita_prevista, "%Y-%m-%d")
         except ValueError:
             messagebox.showerror("Erro", "Data de colheita prevista deve estar no formato AAAA-MM-DD.")
             return
