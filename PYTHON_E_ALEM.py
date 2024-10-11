@@ -6,40 +6,44 @@ import matplotlib.pyplot as plt
 from sqlalchemy import create_engine, text
 import requests
 from datetime import datetime
-
+import oracledb
 
 # Conectando com o Oracle
 def conectar_oracle():
     try:
-        engine = create_engine('oracle+oracledb://SYSTEM:1234@localhost:1521/xe')
-        conn = engine.connect()
+        conn = oracledb.connect(
+            user="admin",
+            password="FIAPfiap2024",
+            dsn="fiap2024_low",
+            config_dir=r"C:\opt\OracleCloud\MYDB",
+            wallet_location=r"C:\opt\OracleCloud\MYDB",
+            wallet_password="FIAPfiap2024"
+        )
         print("Conexão com o Oracle estabelecida com sucesso!")
         return conn
     except Exception as e:
         print(f"Erro ao conectar ao Oracle: {e}")
         return None
 
-
 conexao = conectar_oracle()
-
 
 # Função para calcular custo de produção, utilizando como exemplo R$ 20 por hora de trabalho
 def calcular_custo(insumos, horas_trabalho):
     custo_total = sum(insumos.values()) + horas_trabalho * 20
     return custo_total
 
-
-def registrar_safra(conn, produto, area, insumos, colheita_prevista, custo_total):
+# Função para o registro da safra no banco Oracle
+def registrar_safra(conn, produtor, produto, area, insumos, colheita_prevista, custo_total):
     try:
+        # Converta 'colheita_prevista' para o formato 'YYYY-MM-DD' - Necessário para registro no Banco Oracle
+        colheita_prevista_formatada = datetime.strptime(colheita_prevista, "%d-%m-%Y").strftime("%Y-%m-%d")
+
         query = """
-        INSERT INTO SAFRAS (PRODUTO, AREA, INSUMOS, COLHEITA_PREVISTA, CUSTO_TOTAL)
-        VALUES (:produto, :area, :insumos, TO_DATE(:colheita_prevista, 'DD-MM-AAAA'), :custo_total)
-        """
-        conn.execute(
-            text(query),
-            {'produto': produto, 'area': area, 'insumos': insumos, 'colheita_prevista': colheita_prevista,
-             'custo_total': custo_total}
-        )
+                        INSERT INTO SAFRAS (PRODUTOR, PRODUTO, AREA, INSUMOS, COLHEITA_PREVISTA, CUSTO_TOTAL)
+                        VALUES (:produtor, :produto, :area, :insumos, TO_DATE(:colheita_prevista, 'YYYY-MM-DD'), :custo_total)
+                        """
+        cursor = conn.cursor()
+        cursor.execute(query, {'produtor': produtor, 'produto': produto, 'area': area, 'insumos': insumos,'colheita_prevista': colheita_prevista_formatada, 'custo_total': custo_total})
         conn.commit()
         print("Safra registrada com sucesso!")
     except Exception as e:
@@ -76,58 +80,45 @@ class SafraApp:
         self.root = root
         self.root.title("Sistema de Gerenciamento de Safras")
         self.create_widgets()
-
         self.produtores = {
             'Produtor A': []
         }
-
         self.chave_api = "665e3178898f443f85f110605240910"
         self.cidade = "São Paulo"
 
     def create_widgets(self):
-
         tk.Label(self.root, text="Produtor").grid(row=0, column=0)
         tk.Label(self.root, text="Produto").grid(row=1, column=0)
         tk.Label(self.root, text="Área Cultivada").grid(row=2, column=0)
         tk.Label(self.root, text="Insumos (Fertilizantes, Pesticidas, Água)").grid(row=3, column=0)
         tk.Label(self.root, text="Horas de Trabalho").grid(row=4, column=0)
         tk.Label(self.root, text="Colheita Prevista (DD-MM-AAAA)").grid(row=5, column=0)
-
         self.entry_produtor = tk.Entry(self.root)
         self.entry_produto = tk.Entry(self.root)
         self.entry_area = tk.Entry(self.root)
         self.entry_insumos = tk.Entry(self.root)
         self.entry_horas_trabalho = tk.Entry(self.root)
         self.entry_colheita_prevista = tk.Entry(self.root)
-
         self.entry_produtor.grid(row=0, column=1)
         self.entry_produto.grid(row=1, column=1)
         self.entry_area.grid(row=2, column=1)
         self.entry_insumos.grid(row=3, column=1)
         self.entry_horas_trabalho.grid(row=4, column=1)
         self.entry_colheita_prevista.grid(row=5, column=1)
-
         tk.Button(self.root, text="Registrar Safra", command=self.registrar_safra).grid(row=6, column=0, columnspan=2)
-        tk.Button(self.root, text="Visualizar Gráficos", command=self.visualizar_graficos).grid(row=7, column=0,
-                                                                                                columnspan=2)
-        tk.Button(self.root, text="Ver Previsão do Tempo", command=self.ver_previsao_tempo).grid(row=8, column=0,
-                                                                                                 columnspan=2)
-        tk.Button(self.root, text="Salvar Relatório em Texto", command=self.salvar_relatorio_texto).grid(row=9,
-                                                                                                         column=0,
-                                                                                                         columnspan=2)
-        tk.Button(self.root, text="Salvar Relatório em JSON", command=self.salvar_relatorio_json).grid(row=10, column=0,
-                                                                                                       columnspan=2)
+        tk.Button(self.root, text="Visualizar Gráficos", command=self.visualizar_graficos).grid(row=7, column=0,columnspan=2)
+        tk.Button(self.root, text="Ver Previsão do Tempo", command=self.ver_previsao_tempo).grid(row=8, column=0,                                                                                 columnspan=2)
+        tk.Button(self.root, text="Salvar Relatório em Texto", command=self.salvar_relatorio_texto).grid(row=9,column=0,columnspan=2)
+        tk.Button(self.root, text="Salvar Relatório em JSON", command=self.salvar_relatorio_json).grid(row=10, column=0,columnspan=2)
 
     def registrar_safra(self):
         produtor = self.entry_produtor.get()
         produto = self.entry_produto.get()
-
         try:
             area_cultivada = float(self.entry_area.get())
         except ValueError:
             messagebox.showerror("Erro", "A área cultivada deve ser um número.")
             return
-
         try:
             insumos_list = self.entry_insumos.get().split(',')
             if len(insumos_list) != 3:
@@ -140,17 +131,13 @@ class SafraApp:
         except ValueError as e:
             messagebox.showerror("Erro", f"Erro ao processar insumos: {e}")
             return
-
         try:
             horas_trabalho = int(self.entry_horas_trabalho.get())
         except ValueError:
             messagebox.showerror("Erro", "Horas de trabalho deve ser um número inteiro.")
             return
-
         colheita_prevista = self.entry_colheita_prevista.get()
-
         custo_total = calcular_custo(insumos, horas_trabalho)
-
         try:
             data_colheita = datetime.strptime(colheita_prevista, "%d-%m-%Y")
             if data_colheita < datetime.now():
@@ -159,18 +146,16 @@ class SafraApp:
         except ValueError:
             messagebox.showerror("Erro", "Data de colheita prevista deve estar no formato DD-MM-AAAA.")
             return
-
         safra = {
+            'produtor': produtor,
             'produto': produto,
             'area_cultivada': area_cultivada,
             'insumos': insumos,
             'custo_total': custo_total,
             'colheita_prevista': colheita_prevista
         }
-
         if produtor not in self.produtores:
             self.produtores[produtor] = []
-
         for s in self.produtores[produtor]:
             if s['produto'] == produto:
                 s['area_cultivada'] += area_cultivada
@@ -184,7 +169,7 @@ class SafraApp:
 
         # Inserindo as informações ao banco de dados Oracle
         if conexao:
-            registrar_safra(conexao, produto, area_cultivada, str(insumos), colheita_prevista, custo_total)
+            registrar_safra(conexao, produtor, produto, area_cultivada, str(insumos), colheita_prevista, custo_total)
 
         messagebox.showinfo("Sucesso", "Safra registrada com sucesso!")
 
