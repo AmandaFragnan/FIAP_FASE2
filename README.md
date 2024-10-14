@@ -42,7 +42,7 @@ Primeiro, faça o clone deste repositório localmente usando o Git:
 
 git clone
 
-2.Instalar dependências
+2. Instalar dependências
 
 Certifique-se de ter todas as dependências instaladas. Se estiver usando Python, você pode instalar os pacotes necessários com:
 
