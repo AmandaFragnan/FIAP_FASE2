@@ -11,10 +11,10 @@
 
 
 ## 👨‍🎓 Integrantes: 
-- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/amanda-fragnan-b61537255/)">Amanda Fragnan </a>
-- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/cunhaandre/)">Andre Cunha</a>
-- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/gabriellehalasc/)">Gabrielle Halasc</a> 
-- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/matheusconciani/)">Matheus Conciani</a> 
+- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/amanda-fragnan-b61537255/)">Amanda Fragnan RM 555684 </a>
+- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/cunhaandre/)">Andre Cunha RM 560648</a>
+- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/gabriellehalasc/)">Gabrielle Halasc RM 560147</a> 
+- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/matheusconciani/)">Matheus Conciani RM 559473</a> 
 
 
 ## 📜 Descrição
