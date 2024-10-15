@@ -19,7 +19,35 @@
 
 ## 📜 Descrição
 
-*Descreva seu projeto com base no texto do PBL (até 600 palavras)*
+Projeto: Sistema de Gerenciamento de Pequenas Propriedades Rurais
+
+* Objetivo Geral
+O objetivo principal deste projeto é desenvolver um sistema que permita aos pequenos produtores rurais gerenciarem de maneira eficiente seus cultivos de frutas e verduras. A solução visa auxiliar na redução de custos e melhorar a rentabilidade, otimizando o uso de insumos, planejamento de safra e comercialização.
+
+* Funcionalidades da Solução
+  
+1. Gestão de Insumos e Custo de Produção: Monitoramento de Insumos: O sistema permitirá o monitoramento detalhado do uso de fertilizantes, pesticidas, água e mão-de-obra.
+
+2. Cálculo de Custos: Será possível calcular o custo por área cultivada, proporcionando uma visão clara dos gastos envolvidos em cada etapa do cultivo.
+
+3. Ferramenta de Planejamento: A solução incluirá uma ferramenta que auxilia no planejamento de quais frutas e verduras plantar, considerando a demanda de mercado e as condições climáticas.
+
+4. Registro de Produção: Os produtores poderão registrar a quantidade colhida, facilitando o controle da produção.
+
+5. Comercialização: O sistema permitirá o registro das quantidades comercializadas, preços obtidos e custos operacionais, oferecendo uma visão completa do processo de venda.
+
+6. Análise de Lucro: Serão gerados relatórios detalhados sobre o lucro por área cultivada e a margem.
+
+7. Identificação de Oportunidades: Com esses relatórios, os produtores poderão identificar as áreas com maior potencial de ganho, permitindo uma tomada de decisão mais informada.
+
+Benefícios Esperados:
+
+* Redução de Custos: Com o monitoramento eficiente dos insumos e custos de produção, os produtores poderão identificar e eliminar desperdícios, reduzindo os custos operacionais.
+* Melhoria na Rentabilidade: Através do planejamento de safra, os produtores poderão maximizar a rentabilidade de suas colheitas.
+* Tomada de Decisão Informada: Os relatórios de análise de lucro e rentabilidade fornecerão informações valiosas para a tomada de decisões estratégicas, ajudando os produtores a focar nas culturas mais lucrativas.
+* Sustentabilidade: O uso otimizado de insumos contribuirá para práticas agrícolas mais sustentáveis, beneficiando o meio ambiente e a comunidade local.
+
+Este sistema de gerenciamento visa transformar a maneira como os pequenos produtores rurais administram suas propriedades, proporcionando ferramentas avançadas para melhorar a eficiência e a rentabilidade de suas operações agrícolas.
 
 
 ## 📁 Estrutura de pastas
