@@ -26,7 +26,7 @@ O objetivo principal deste projeto é desenvolver um sistema que permita aos peq
 
 * Funcionalidades da Solução
   
-1. Gestão de Insumos e Custo de Produção: Monitoramento de Insumos: O sistema permitirá o monitoramento detalhado do uso de fertilizantes, pesticidas, água e mão-de-obra.
+1. Gestão de Insumos e Custo de Produção: Monitoramento de Insumos: O sistema permitirá o monitoramento detalhado do uso de fertilizantes, pesticidas, entre outros.
 
 2. Cálculo de Custos: Será possível calcular o custo por área cultivada, proporcionando uma visão clara dos gastos envolvidos em cada etapa do cultivo.
 
