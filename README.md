@@ -16,6 +16,13 @@
 - <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/gabriellehalasc/)">Gabrielle Halasc RM 560147</a> 
 - <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/matheusconciani/)">Matheus Conciani RM 559473</a> 
 
+## Professores:
+
+Tutor(a)
+Nome do Tutor
+
+Coordenador(a)
+Nome do Coordenador
 
 ## 📜 Descrição
 
@@ -83,6 +90,7 @@ python main.py
 ## Historico de lançamentos
 
 - <b> 0.1.0 - 13/10/2024<b>
+- <b> 0.2.0 - 15/10/2024<b>
 
   
 ## 📋 Licença
