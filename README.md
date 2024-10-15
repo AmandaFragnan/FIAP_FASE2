@@ -11,10 +11,10 @@
 
 
 ## 👨‍🎓 Integrantes: 
-- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/amanda-fragnan-b61537255/)">Amanda Fragnan RM 555684 </a>
-- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/cunhaandre/)">Andre Cunha RM 560648</a>
-- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/gabriellehalasc/)">Gabrielle Halasc RM 560147</a> 
-- <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/matheusconciani/)">Matheus Conciani RM 559473</a> 
+- <a href="https://www.linkedin.com/in/amanda-fragnan-b61537255/">Amanda Fragnan RM 555684 </a>
+- <a href="https://www.linkedin.com/in/cunhaandre/">Andre Cunha RM 560648</a>
+- <a href="https://www.linkedin.com/in/gabriellehalasc/">Gabrielle Halasc RM 560147</a> 
+- <a href="https://www.linkedin.com/in/matheusconciani/">Matheus Conciani RM 559473</a> 
 
 ## 👩‍🏫 Professores:
 ### Tutor(a)
@@ -64,6 +64,8 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 - <b>requirements.txt</b>: Lista  com todas as dependências ou bibliotecas necessárias para que o projeto funcione corretamente.
 
 - <b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
+
+- <b>assets</b>: aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como imagens.
 
 ## 🔧 Como executar o código
 
