@@ -30,15 +30,13 @@ O objetivo principal deste projeto é desenvolver um sistema que permita aos peq
 
 2. Cálculo de Custos: Será possível calcular o custo por área cultivada, proporcionando uma visão clara dos gastos envolvidos em cada etapa do cultivo.
 
-3. Ferramenta de Planejamento: A solução incluirá uma ferramenta que auxilia no planejamento de quais frutas e verduras plantar, considerando a demanda de mercado e as condições climáticas.
+3. Ferramenta de Planejamento: A solução incluirá uma ferramenta que auxilia no planejamento de quais frutas e verduras plantar, considerando as condições climáticas.
 
 4. Registro de Produção: Os produtores poderão registrar a quantidade colhida, facilitando o controle da produção.
 
-5. Comercialização: O sistema permitirá o registro das quantidades comercializadas, preços obtidos e custos operacionais, oferecendo uma visão completa do processo de venda.
+5. Análise de Lucro: Serão gerados relatórios detalhados sobre o lucro por área cultivada e a margem.
 
-6. Análise de Lucro: Serão gerados relatórios detalhados sobre o lucro por área cultivada e a margem.
-
-7. Identificação de Oportunidades: Com esses relatórios, os produtores poderão identificar as áreas com maior potencial de ganho, permitindo uma tomada de decisão mais informada.
+6. Identificação de Oportunidades: Com esses relatórios, os produtores poderão identificar as áreas com maior potencial de ganho, permitindo uma tomada de decisão mais informada.
 
 Benefícios Esperados:
 
