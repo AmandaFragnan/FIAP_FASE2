@@ -16,13 +16,11 @@
 - <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/gabriellehalasc/)">Gabrielle Halasc RM 560147</a> 
 - <a href="[https://www.linkedin.com/company/inova-fusca](https://www.linkedin.com/in/matheusconciani/)">Matheus Conciani RM 559473</a> 
 
-## Professores:
-
-Tutor(a)
-Nome do Tutor
-
-Coordenador(a)
-Nome do Coordenador
+## 👩‍🏫 Professores:
+### Tutor(a)
+- <a href="https://www.linkedin.com/in/lucas-gomes-moreira-15a8452a/">Lucas Gomes Moreira</a>
+### Coordenador(a)
+- <a href="https://www.linkedin.com/in/profandregodoi/">André Godoi</a>
 
 ## 📜 Descrição
 
